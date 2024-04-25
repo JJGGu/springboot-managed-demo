@@ -1,5 +1,5 @@
 Service:
-  RegionId: cn-hangzhou
+  RegionId: ap-southeast-1
   DeployType: ros
   TenantType: SingleTenant
   DeployMetadata:
@@ -42,7 +42,7 @@ Service:
                 - ZoneId
                 - VSwitchId
               ParameterValueMapping:
-                cn-hangzhou:
+                ap-southeast-1:
                   Parameters:
                     VpcId: ${VpcId}
                     ZoneId: ${ZoneId}
@@ -55,7 +55,7 @@ Service:
       - Name: 单机版
         Url: 'templates/parameters.yaml'
         AllowedRegions:
-          - cn-hangzhou
+          - ap-southeast-1
         PredefinedParameters:
         - Name: 低配版
           Parameters: {}
@@ -78,15 +78,6 @@ Service:
     NetworkMetadata:
       EnablePrivateVpcConnection: false
   ServiceType: managed
-#  OperationMetadata:
-#    ModifyParametersConfig:
-#      - TemplateName: 单机版
-#        Operation:
-#          - Name: 变配套餐
-#            Description: 变配套餐
-#            Type: Custom
-#            SupportPredefinedParameters: true
-#            EnableLogging: false
   ServiceInfo:
     Locale: zh-CN
     ShortDescription: springboot demo
@@ -100,5 +91,5 @@ Artifact:
     ArtifactName: SpringBootPackage
     Description: 这是一个使用SpringBoot的测试包
     ArtifactProperty:
-      RegionId: cn-hangzhou
+      RegionId: ap-southeast-1
       Url: 'artifacts/package.tgz'
