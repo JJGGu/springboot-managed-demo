@@ -1,9 +1,9 @@
-# 服务模版说明文档
+# 服务模板说明文档
 
 ## 服务说明
 
 本文介绍基于SpringBoot软件包快速构建托管版单租计算巢服务，关于计算巢托管版可以参考[帮助文档](https://help.aliyun.com/zh/compute-nest/create-a-fully-managed-service?spm=a2c4g.11174283.0.i5)，
-本示例对应的git地址为：[springboot-managed-demo](https://github.com/aliyun-computenest/springboot-managed-demo)
+本示例对应的Git仓库地址：[springboot-managed-demo](https://github.com/aliyun-computenest/springboot-managed-demo)。
 。根据该服务模板构建的服务默认包含三种套餐：
 
 | 套餐名 | ECS规格族         | vCPU与内存          | 系统盘               | 公网带宽      |
@@ -12,26 +12,26 @@
 | 基础版 | ecs.c6.xlarge  | 内存型c6，4vCPU 8GiB | ESSD云盘 200GiB PL0 | 固定带宽1Mbps |
 | 高配版 | ecs.c6.2xlarge | 内存型c6，4vCPU 8GiB | ESSD云盘 200GiB PL0 | 固定带宽1Mbps |
 
-本示例会自动的构建计算巢服务，具体的服务构建流程为
+本示例会自动的构建计算巢服务，具体的服务构建流程为：
 
 1. 上传文件并构建计算巢文件部署物
 2. 创建计算巢服务并关联文件部署物
 
-创建过程大约持续2分钟，当服务变成待提交后构建成功
+创建过程大约持续2分钟，当服务变成待提交后构建成功。
 
 ## 服务架构
 
-本部署架构为单机ecs部署，通过公网ip 8080端口访问
+本部署架构为单机ecs部署，通过公网ip 8080端口访问。
 ![image.png](springboot架构图.png)
 
 ## 服务构建计费说明
 
-测试本服务构建无需任何费用，创建服务实例涉及的费用参考服务实例计费说明
+测试本服务构建无需任何费用，创建服务实例涉及的费用参考服务实例计费说明。
 
 ## RAM账号所需权限
 
-本服务需要对ECS、VPC等资源进行访问和创建操作，若您使用RAM用户创建服务实例，需要在创建服务实例前，对使用的RAM用户的账号添加相应资源的权限。添加RAM权限的详细操作，请参见[为RAM用户授权](https://help.aliyun.com/document_detail/121945.html)
-。所需权限如下表所示。
+本服务需要对ECS、VPC等资源进行访问和创建操作，若您使用RAM用户创建服务实例，需要在创建服务实例前，对使用的RAM用户的账号添加相应资源的权限。添加RAM权限的详细操作，请参见[为RAM用户授权](https://help.aliyun.com/document_detail/121945.html)。
+所需权限如下表所示。
 
 | 权限策略名称                              | 备注                          |
 |-------------------------------------|-----------------------------|
@@ -66,9 +66,9 @@
 
 ### 部署参数说明
 
-| 参数项  | 说明                                                   |
-|------|------------------------------------------------------|
-| 实例密码 | 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+= |{}[]:;'<>,.?/ 中的特殊符号） |
+| 参数项  | 说明                                                                          |
+|------|-----------------------------------------------------------------------------|
+| 实例密码 | 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+= {}[]:;'<>,.?/ 中的特殊符号）。 |
 
 ### 部署步骤
 
@@ -91,9 +91,9 @@
 
 ## 服务详细说明
 
-本文通过将[代码](https://atomgit.com/flow-example/spring-boot)
-构建后，将deploy.sh和application.jar打包成package.tgz，通过计算巢部署物上传为文件部署物，并分发生成SpringBootPackage，然后在模版中ALIYUN::
-ECS::RunCommand执行命令
+本文通过将[spring-boot](https://atomgit.com/flow-example/spring-boot)。
+构建后，将deploy.sh和application.jar打包成package.tgz，通过计算巢上传为文件部署物，并分发生成SpringBootPackage，然后在模版中ALIYUN::
+ECS::RunCommand执行命令。
 
 ```
 yum install -y java
@@ -104,11 +104,11 @@ tar xvf package.tgz
 /bin/bash deploy.sh start
 ```
 
-{{ computenest::file::springboot }} 为占位符，会由计算巢服务替换成文件部署物SpringBootPackage的http下载地址
+{{ computenest::file::springboot }} 为占位符，会由计算巢服务替换成文件部署物SpringBootPackage的http下载地址。
 
-templates/template.yaml主要由三部分组成
+templates/template.yaml主要由三部分组成：Parameters, Resources和Outputs
 
-1. Parameters定义需要用户填写的参数，包括付费类型，实例规格和实例密码可用区参数
+1. Parameters定义需要用户填写的参数，包括付费类型，实例规格和实例密码可用区参数。
 
 ```
 EcsInstanceType:
@@ -164,7 +164,7 @@ VSwitchId:
    zh-cn: 交换机实例ID
 ```
 
-2. Resources定义需要开的资源，包括新开的vpc, vswitch和ecs实例, 以及执行命令的定义
+2. Resources定义需要开的资源，包括新开的vpc, vswitch和ecs实例, 以及执行命令的定义。
 
 ```
 SecurityGroup:
@@ -228,7 +228,7 @@ InstallPackage:
            Ref: ALIYUN::TenantId
 ```
 
-3. Outputs定义需要最终在计算巢概览页中对用户展示的输出
+3. Outputs定义需要最终在计算巢概览页中对用户展示的输出。
 
 ```
 Outputs:
