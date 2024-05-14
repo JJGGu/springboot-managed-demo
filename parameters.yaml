@@ -16,6 +16,7 @@ Parameters:
     Label:
       en: VSwitch Available Zone
       zh-cn: 可用区
+  # VPC实例ID
   VpcId:
     AssociationProperty: ALIYUN::ECS::VPC::VPCId
     Type: String
